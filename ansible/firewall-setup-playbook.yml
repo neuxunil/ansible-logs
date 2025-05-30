@@ -1,0 +1,11 @@
+- name: Set up firewall for grafana server
+  hosts: grafana
+
+  tasks:
+  - name: Set up firewall via ufw
+    shell:
+      cmd: |
+        sudo ufw allow 22
+        sudo ufw allow 3000
+        sudo ufw allow from 10.0.0.0/8 to any port 3100
+        sudo ufw --force enable
